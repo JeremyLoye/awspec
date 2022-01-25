@@ -54,6 +54,8 @@ module Awspec::Type
 
     private
 
+    undef :timeout if Gem::Version.create(RUBY_VERSION) < Gem::Version.create('3.1.0')
+
     def check_existence
       raise Awspec::NoExistingResource.new(self.class, @display_name) if resource_via_client.nil?
     end
